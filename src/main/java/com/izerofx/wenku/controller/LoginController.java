@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.izerofx.framework.basic.common.controller.BaseController;
 import com.izerofx.framework.basic.util.CodecUtil;
+import com.izerofx.framework.basic.util.PropertiesUtil;
 import com.izerofx.framework.basic.util.StringUtils;
 import com.izerofx.framework.core.util.PasswordHelper;
 import com.izerofx.wenku.domain.User;
@@ -147,6 +148,6 @@ public class LoginController extends BaseController {
     @RequestMapping(value = { "/logout", "/logout/" }, method = RequestMethod.GET)
     public String logout(Model model) {
         removeUser();
-        return redirectTo("/");
+        return redirectTo(PropertiesUtil.getValue("izerofx.config.domain"));
     }
 }

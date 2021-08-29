@@ -48,6 +48,7 @@ public class DocBaseInfoServiceImpl extends BaseServiceImpl<DocBaseInfo, String>
     public Page<DocBaseInfo> findAllByUserId(String userId, Pageable pageable) {
         DocBaseInfo docBaseInfo = new DocBaseInfo();
         docBaseInfo.setUserId(userId);
+        docBaseInfo.setType(-1);
         docBaseInfo.setConState(-2);
         return docBaseInfoDao.findAll(docBaseInfo, pageable);
     }
@@ -59,6 +60,15 @@ public class DocBaseInfoServiceImpl extends BaseServiceImpl<DocBaseInfo, String>
     @Override
     public DocBaseInfo findById(String id) {
         return docBaseInfoDao.findById(id);
+    }
+    
+    /*
+     * (non-Javadoc)    
+     * @see com.izerofx.wenku.service.DocBaseInfoService#addViewCountById(java.lang.String)
+     */
+    @Override
+    public void addViewCountById(String id){
+        docBaseInfoDao.addViewCountById(id);
     }
 
 }

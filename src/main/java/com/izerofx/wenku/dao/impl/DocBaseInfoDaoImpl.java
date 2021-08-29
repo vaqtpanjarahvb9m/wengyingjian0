@@ -38,8 +38,8 @@ public class DocBaseInfoDaoImpl implements DocBaseInfoDaoCustom<DocBaseInfo, Str
         List<Object> params = new ArrayList<>();
 
         sql.append("select");
-        sql.append("  a.id, a.title, a.summary, a.type, a.create_time, a.view_count, a.user_id,");
-        sql.append("  b.thum_path, b.pages, b.ext, b.con_state, c.nick_name");
+        sql.append("  a.id, a.title, a.summary, a.type, a.create_time, ifnull(a.view_count, 0) view_count, a.user_id,");
+        sql.append("  b.thum_path, ifnull(b.pages, 0) pages, b.ext, b.con_state, c.nick_name");
         sql.append(" from doc_base_info a");
         sql.append(" left join doc_file_info b ON b.id = a.file_id");
         sql.append(" left join user_info c ON c.id = a.user_id");
@@ -49,6 +49,12 @@ public class DocBaseInfoDaoImpl implements DocBaseInfoDaoCustom<DocBaseInfo, Str
         if (baseInfo != null && StringUtils.isNotBlank(baseInfo.getUserId())) {
             sql.append(" and a.user_id = ?");
             params.add(baseInfo.getUserId());
+        }
+
+        //按文档类型查询
+        if (baseInfo != null && baseInfo.getType() > 0) {
+            sql.append(" and a.type = ?");
+            params.add(baseInfo.getType());
         }
 
         //按转换状态查询

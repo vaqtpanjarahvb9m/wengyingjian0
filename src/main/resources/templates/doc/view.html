@@ -22,7 +22,7 @@
                     <div style="float:right;padding: 10px 0;color: #999; padding-right:10px;font-size: 14px;">
                         格式：[[${docBaseInfo.ext}]]<span style="padding: 0 10px;">|</span>
                         浏览次数：[[${docBaseInfo.viewCount}]]<span style="padding: 0 10px;">|</span>
-                        上传日期：[[${#calendars.format(docBaseInfo.createTime, 'yyyy-MM-dd hh:mm:ss')}]]
+                        上传日期：[[${#calendars.format(docBaseInfo.createTime, 'yyyy-MM-dd HH:mm:ss')}]]
                     </div>
                 </div>
             </div>
@@ -73,6 +73,7 @@
     };
 </script>
 <script th:src="@{/static/js/view.js}"></script>
+<script th:src="@{/doc/P-}+${docBaseInfo.id}+'/count'"></script>
 <script type="text/javascript">
 layui.use(['element'], function(){
     var element = layui.element();

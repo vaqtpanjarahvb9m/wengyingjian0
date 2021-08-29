@@ -39,4 +39,10 @@ public interface DocBaseInfoService extends BaseService<DocBaseInfo, String> {
      * @return
      */
     public DocBaseInfo findById(String id);
+    
+    /**
+     * 增加浏览数
+     * @param id
+     */
+    public void addViewCountById(String id);
 }

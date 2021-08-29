@@ -26,7 +26,6 @@ public class Application {
 
         config.storePath = "./store";
         config.serverName = "wenku-demo";
-
         try {
             new MqServer(config).start();
         } catch (Exception e) {

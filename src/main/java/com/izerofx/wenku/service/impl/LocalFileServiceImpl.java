@@ -75,7 +75,7 @@ public class LocalFileServiceImpl implements FileService {
                 throw new Exception("创建文件上传目录失败");
             }
         }
-        fileInfo.setName(FilenameUtils.getBaseName(file.getOriginalFilename()));
+        fileInfo.setName(FilenameUtils.getBaseName(new String(file.getOriginalFilename().getBytes("ISO-8859-1"), "UTF-8")));
         fileInfo.setPath(uploadProperties.getPublicPath() + folderAndName);
         fileInfo.setExt(FilenameUtils.getExtension(file.getOriginalFilename()));
 

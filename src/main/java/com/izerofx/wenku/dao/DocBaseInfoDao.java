@@ -25,4 +25,12 @@ public interface DocBaseInfoDao extends JpaRepository<DocBaseInfo, String>, DocB
     @Query(nativeQuery = true, value = "delete from doc_base_info where user_id = ?1 and file_id = ?2")
     @Modifying
     public void deleteByUserIdAndFielId(String userId, String fileId);
+
+    /**
+     * 增加浏览数
+     * @param id
+     */
+    @Query(nativeQuery = true, value = "update doc_base_info set view_count = (view_count + 1) where id = ?1")
+    @Modifying
+    public void addViewCountById(String id);
 }

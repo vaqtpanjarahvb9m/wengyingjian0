@@ -30,6 +30,9 @@ public class RelativeDateFormat {
      * @return
      */
     public static String format(Date dateTime) {
+        if (dateTime == null) {
+            return "";
+        }
         long delta = new Date().getTime() - dateTime.getTime();
         if (delta < 1L * ONE_MINUTE) {
             long seconds = toSeconds(delta);

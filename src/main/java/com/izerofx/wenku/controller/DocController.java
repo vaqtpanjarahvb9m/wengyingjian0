@@ -75,10 +75,11 @@ public class DocController extends BaseController {
     @RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
     public String index(Model model) {
         DocBaseInfo docBaseInfo = new DocBaseInfo();
+        docBaseInfo.setType(1);//只查询公开的文档
         docBaseInfo.setConState(2);//只查询转换完成的
 
         Page<DocBaseInfo> docs = docBaseInfoService.findAll(docBaseInfo, initPage(1, 10));
-        
+
         model.addAttribute("list", docs.getContent());
         
         return DOC_INDEX_VIEW;
@@ -105,6 +106,16 @@ public class DocController extends BaseController {
     }
 
     /**
+     * 增加浏览数
+     * @param id
+     */
+    @RequestMapping(value = "/P-{id}/count", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public void addViewCount(@PathVariable String id) {
+        docBaseInfoService.addViewCountById(id);
+    }
+
+    /**
      * 文档上传页面
      * @param model
      * @return
@@ -125,6 +136,7 @@ public class DocController extends BaseController {
         Map<String, Object> result = new HashMap<>();
 
         DocBaseInfo docBaseInfo = new DocBaseInfo();
+        docBaseInfo.setType(1);//只查询公开的文档
         docBaseInfo.setConState(2);//只查询转换完成的
 
         Page<DocBaseInfo> docs = docBaseInfoService.findAll(docBaseInfo, initPage(pageNo, 10));
@@ -147,7 +159,6 @@ public class DocController extends BaseController {
     public Map<String, Object> upload(@RequestParam("file") MultipartFile file) {
         Map<String, Object> result = new HashMap<>();
         try {
-
             //判断文件是否已存在
             if (docFileInfoService.isExistByHash(DigestUtils.md5Hex(file.getInputStream()))) {
                 result.put("status", 1);

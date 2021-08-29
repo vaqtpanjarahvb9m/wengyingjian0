@@ -10,7 +10,7 @@
 
 <div class="banner">
 	<div class="img">
-		<img th:src="@{/static/images/banner.jpg}" />
+		<img th:src="@{/static/images/banner.jpg}" width="100%"/>
 	</div>
 	<div class="container">
 		<div class="container-font" style="margin-bottom:140px;">
@@ -48,7 +48,7 @@ layui.use(['layer', 'element'], function(){
     layer.open({
         type: 1,
         title: false,
-        shade: [0],
+        shade: false,
         area: ['340px', '215px'],
         offset: 'rb',
         time: 5000,

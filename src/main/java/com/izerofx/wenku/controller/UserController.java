@@ -1,5 +1,6 @@
 package com.izerofx.wenku.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import com.izerofx.framework.basic.util.StringUtils;
 import com.izerofx.framework.core.util.PasswordHelper;
 import com.izerofx.wenku.domain.DocBaseInfo;
 import com.izerofx.wenku.domain.User;
+import com.izerofx.wenku.domain.Visitor;
 import com.izerofx.wenku.service.DocBaseInfoService;
 import com.izerofx.wenku.service.FileService;
 import com.izerofx.wenku.service.UserService;
@@ -73,11 +75,31 @@ public class UserController extends BaseController {
         if (user == null) {
             return redirectTo("/404");
         }
-        model.addAttribute("user", user);
 
+        model.addAttribute("user", user);
+        model.addAttribute("visitor_list", visitorService.findByUserId(uId, 10));
         return "user/home";
     }
 
+    /**
+     * 记录访客
+     * @param uId
+     */
+    @RequestMapping(value = "/u/visitor/{uId}", method = RequestMethod.GET)
+    @ResponseBody
+    public void recordVisitor(@PathVariable String uId) {
+        User currentUser = getUser();
+        if (currentUser != null && StringUtils.isNotBlank(currentUser.getId()) && !uId.equals(currentUser.getId())) {
+
+            Visitor visitor = new Visitor();
+            visitor.setUserId(uId);
+            visitor.setVisitorUserId(currentUser.getId());
+            visitor.setCreateTime(new Date());
+
+            visitorService.save(visitor);
+        }
+    }
+    
     /**
      * 用户设置
      * @param model

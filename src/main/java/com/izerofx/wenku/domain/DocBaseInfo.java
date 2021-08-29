@@ -33,14 +33,14 @@ public class DocBaseInfo extends BaseEntity {
     private String summary;
 
     /**
-     * 分类
+     * 分类 1-公共文档，2-私有文档
      */
-    private Integer type;
+    private int type;
 
     /**
      * 浏览次数
      */
-    private Integer viewCount;
+    private int viewCount;
 
     /**
      * 文件id
@@ -71,7 +71,7 @@ public class DocBaseInfo extends BaseEntity {
     /**
      * 文档总页数
      */
-    private Integer pages;
+    private int pages;
 
     /**
      * 文档转换状态 0-待转换 1-转换中 2-转换完成 3-转换失败，默认0
@@ -101,7 +101,7 @@ public class DocBaseInfo extends BaseEntity {
      * @param fileId
      * @param userId
      */
-    public DocBaseInfo(String title, String summary, Integer type, Integer viewCount, String fileId, String userId) {
+    public DocBaseInfo(String title, String summary, int type, int viewCount, String fileId, String userId) {
         super();
         this.title = title;
         this.summary = summary;
@@ -128,20 +128,20 @@ public class DocBaseInfo extends BaseEntity {
     }
 
     @Column(columnDefinition = "INT default 1")
-    public Integer getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(int type) {
         this.type = type;
     }
 
     @Column(columnDefinition = "INT default 0")
-    public Integer getViewCount() {
+    public int getViewCount() {
         return viewCount;
     }
 
-    public void setViewCount(Integer viewCount) {
+    public void setViewCount(int viewCount) {
         this.viewCount = viewCount;
     }
 
@@ -189,11 +189,11 @@ public class DocBaseInfo extends BaseEntity {
     }
 
     @Transient
-    public Integer getPages() {
+    public int getPages() {
         return pages;
     }
 
-    public void setPages(Integer pages) {
+    public void setPages(int pages) {
         this.pages = pages;
     }
 

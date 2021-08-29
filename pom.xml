@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.izerofx</groupId>
-    <artifactId>wenku-demo</artifactId>
+    <artifactId>wenku</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -16,6 +16,18 @@
         <version>1.4.2.RELEASE</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
+
+    <!-- 使用阿里云maven仓库 -->
+    <repositories>
+        <repository>
+            <id>aliyun-maven-repo</id>
+            <name>aliyun-maven-repo</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

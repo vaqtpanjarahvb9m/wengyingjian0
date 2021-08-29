@@ -27,10 +27,11 @@ public class VisitorDaoImpl implements VisitorDaoCustom<Visitor, String> {
 
         StringBuilder sql = new StringBuilder();
 
-        sql.append(" select a.*, b.nick_name, b.avatar");
+        sql.append(" select a.user_id, a.visitor_user_id, max(a.create_time) create_time, b.nick_name,b.avatar");
         sql.append(" from user_visitor a");
         sql.append(" left join user_info b on b.id = a.visitor_user_id");
         sql.append(" where a.user_id = ?");
+        sql.append(" group by a.visitor_user_id");
         sql.append(" order by a.create_time desc limit ?");
 
         return dao.findList(sql.toString(), new Object[] { userId, count < 1 ? 10 : count }, Visitor.class);

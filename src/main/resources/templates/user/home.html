@@ -35,6 +35,16 @@
                     <li><i class="iconfont icon-shijian"></i>加入时间：<span th:text="${#dates.format(user.createTime,'yyyy-MM-dd')}">2016-10-26</span></li>
                     <li><i class="iconfont icon-dingwei"></i>城市：<span th:text="${user.city}">杭州</span></li>
                 </ul>
+                <div class="user-looklog" style="padding-bottom:200px;">
+                    <h3>最近访客</h3>
+                    <span th:if="${not #lists.isEmpty(visitor_list)}" th:each="item: ${visitor_list}">
+                        <a th:href="@{/user/u/}+${item.visitorUserId}">
+                            <img th:src="${item.avatar} ? @{/}+${item.avatar} : @{/static/images/default_avatar.png}" />
+                            <cite th:text="${item.nickName}">小虾米</cite>
+                            <i izerofx:prettytime="${item.createTime}">刚刚</i>
+                        </a>
+                    </span>
+                </div>
             </div>
         </div>
     </div>
@@ -47,6 +57,7 @@
 var BASE_URL = '[[@{/}]]';
 </script>
 <script th:src="@{/static/layui/layui.js}"></script>
+<script th:src="@{/user/u/visitor/}+${user.id}"></script>
 <script type="text/javascript">
 layui.use(['layer', 'laytpl', 'laypage'], function(){
     var $ = layui.jquery

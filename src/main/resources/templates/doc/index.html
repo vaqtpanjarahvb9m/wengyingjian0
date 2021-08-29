@@ -47,11 +47,12 @@ var BASE_URL = '[[@{/}]]';
 </script>
 <script th:src="@{/static/layui/layui.js}"></script>
 <script type="text/javascript">
-layui.use(['flow','layer','laytpl'], function(){
+layui.use(['element','flow','layer','laytpl'], function(){
     var $ = layui.jquery
     ,layer = layui.layer
     ,laytpl = layui.laytpl
-    ,flow = layui.flow;
+    ,flow = layui.flow
+    ,element = layui.element();
     
     var tpl = '{{# for(var i = 0; i < d.list.length; i++){ }}\
         <li>\

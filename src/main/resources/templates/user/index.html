@@ -49,7 +49,7 @@
                     <h3>最近访客</h3>
                     <span th:if="${not #lists.isEmpty(visitor_list)}" th:each="item: ${visitor_list}">
                         <a th:href="@{/user/u/}+${item.visitorUserId}">
-                            <img th:src="${item.avatar} ? @{/static}+${item.avatar} : @{/static/images/default_avatar.png}" />
+                            <img th:src="${item.avatar} ? @{/}+${item.avatar} : @{/static/images/default_avatar.png}" />
                             <cite th:text="${item.nickName}">小虾米</cite>
                             <i izerofx:prettytime="${item.createTime}">刚刚</i>
                         </a>

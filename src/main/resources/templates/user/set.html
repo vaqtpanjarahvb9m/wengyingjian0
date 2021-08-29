@@ -187,8 +187,8 @@ layui.use(['layer', 'element', 'form', 'upload'], function(){
 	
     //根据ip获取城市
     if($('#L_city').val() === ''){
-        $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js', function(){
-            $('#L_city').val(remote_ip_info.city);
+        $.getScript('https://pv.sohu.com/cityjson', function(data){
+            $('#L_city').val(returnCitySN.cname);
         });
     }
     //上传图片
@@ -203,7 +203,7 @@ layui.use(['layer', 'element', 'form', 'upload'], function(){
            }
            ,success: function(res){
                if(res.code === 0){
-                    $.post(BASE_URL+'/user/set/', {
+                    $.post(BASE_URL+'user/set/', {
 		                  avatar: res.url
 		            }, function(res){
 		                  location.reload();

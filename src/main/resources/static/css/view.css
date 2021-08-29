@@ -6,9 +6,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     font-size: 100%;
     font: inherit;
 }
-a {
-	color: #146c88
-}
+
 body {background: url(../images/skin-paper.png) repeat;background-attachment: fixed;}
 .header {box-shadow: 0 1px 12px rgba(16, 6, 25, 0.2); z-index: 999;}
 .footer {background-color: #ffffff;}
