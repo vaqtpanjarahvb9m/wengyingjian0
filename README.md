@@ -1,8 +1,10 @@
 #仿百度文库完整项目
 
-演示地址:[https://wenku.izerofx.com:8000/](https://wenku.izerofx.com:8000/)
+演示地址：[https://wenku.izerofx.com:8000/](https://wenku.izerofx.com:8000/)
+GitHub：[https://github.com/qjx378/wenku](https://github.com/qjx378/wenku)
 
-项目很多细节不完善，但大致可以用，主要用于学习参考用。
+项目很多细节不完善，但大致可以用，主要用于入门学习。
+项目是基于Spring Boot+Thymeleaf开发，没了解过的也可以顺便去学习了解下。
 
 #技术框架
 * 核心框架：Spring Boot 1.4.0
@@ -11,6 +13,7 @@
 * 持久层框架：Spring Data Jpa
 * 数据库连接池：Druid 
 * 日志管理：Log4j
+* 构建管理：Maven
 * CSS框架：layui
 
 #使用外部组件
