@@ -10,16 +10,20 @@ GitHub：[https://github.com/qjx378/wenku](https://github.com/qjx378/wenku)
 * 核心框架：Spring Boot 1.4.0
 * 视图框架：Spring MVC 4.3.4
 * 视图模版: Thymeleaf 3.0.2
-* 持久层框架：Spring Data Jpa
+* 持久层框架：Spring Data JPA
 * 数据库连接池：Druid 
 * 日志管理：Log4j
 * 构建管理：Maven
-* CSS框架：layui
+* 前端框架：layui
 
 #使用外部组件
 * LibrOffice 用于把文档转为pdf
 * SWFTools 用于把pdf转成swf
 * zbus 用到了Zbus MQ处理转换的队列(ps:其实可以不用)
+
+#正在开发中……
+* 准备接入spring-session，实现会话的统一管理，实现可分布式部署
+* 正在开发网站配套的APP
 
 #以下是部分截图
 ![首页](http://git.oschina.net/uploads/images/2016/1116/162935_e8226545_1198.png "首页")

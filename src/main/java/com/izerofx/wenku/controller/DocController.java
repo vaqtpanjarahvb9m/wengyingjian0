@@ -74,14 +74,6 @@ public class DocController extends BaseController {
      */
     @RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
     public String index(Model model) {
-        DocBaseInfo docBaseInfo = new DocBaseInfo();
-        docBaseInfo.setType(1);//只查询公开的文档
-        docBaseInfo.setConState(2);//只查询转换完成的
-
-        Page<DocBaseInfo> docs = docBaseInfoService.findAll(docBaseInfo, initPage(1, 10));
-
-        model.addAttribute("list", docs.getContent());
-        
         return DOC_INDEX_VIEW;
     }
 

@@ -26,37 +26,13 @@
 </div>
 <div th:replace="common/footer">footer</div>
 </body>
-<script type="text/javascript">
-    var BASE_URL = '[[@{/}]]';
-</script>
 <script th:src="@{/static/layui/layui.js}"></script>
 <script type="text/javascript">
-layui.use(['layer', 'element'], function(){
-    var $ = layui.jquery
-    ,layer = layui.layer
-    ,element = layui.element();
-    
-    $(window).scroll(function() {
-        var a = $(this).scrollTop();
-        if (a > 0) {
-            $(".header").removeClass("no-bg");
-        } else {
-            $(".header").addClass("no-bg");
-        }
-    });
-    
-    layer.open({
-        type: 1,
-        title: false,
-        shade: false,
-        area: ['340px', '215px'],
-        offset: 'rb',
-        time: 5000,
-        closeBtn: 0,
-        anim: 2,
-        shadeClose: false,
-        content: '<div style="background-color:#E55D40; color:#fff;line-height:200px; text-align:center;">本站所有内容只作为演示用</div>'
-    });
-});
+layui.cache.page = 'index';
+layui.config({
+    base: '[[@{/static/mods/}]]'
+}).extend({
+    izerofx: 'index'
+}).use('izerofx');
 </script>
 </html>

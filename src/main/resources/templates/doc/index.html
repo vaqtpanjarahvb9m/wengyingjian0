@@ -14,24 +14,11 @@
 <section style="background: #e5e8ec; overflow: hidden; padding-top: 75px;">
     <div id="doc-list" class="main">
         <div class="common-box">
-            <ul class="doc-index-list" th:classappend="${#lists.isEmpty(list)} ? 'layui-hide'">
-                <li th:if="${not #lists.isEmpty(list)}" th:each="item:${list}">
-		            <div class="books">
-		                <a th:href="@{/doc/P-}+${item.id}+'.html'" target="_blank" style="background-color:#FFF">
-		                    <img th:src="@{/}+${item.thumPath}">
-		                </a>
-		                <em>P.[[${item.pages}]]</em>
-		            </div>
-		            <div class="names">
-		                <h3>
-		                    <a th:href="@{/doc/P-}+${item.id}+'.html'" target="_blank">[[${item.title}]]</a>
-		                </h3>
-		                <h4><a th:href="@{/user/u/}+${item.userId}" target="_blank">[[${item.nickName}]]</a></h4>
-		            </div>
-		        </li>
+            <ul class="doc-index-list">
+                
             </ul>
         </div>
-        <div class="fly-none" th:classappend="${not #lists.isEmpty(list)} ? 'layui-hide'" style="min-height: 256px; padding-top: 20px;">
+        <div class="fly-none layui-hide" style="min-height: 256px; padding-top: 20px;">
             <h2><i class="iconfont icon-meiyouxiaoxi"></i></h2>
             <p style="margin-top: 5px; font-size: 22px">还没有人分享文档</p>
             <p style="margin-top: 5px; font-size: 22px"><a th:href="@{/doc/upload/}" class="layui-inline site-up">立即分享</a> </p>
@@ -42,17 +29,20 @@
 
 <div th:replace="common/footer">footer</div>
 </body>
-<script type="text/javascript">
-var BASE_URL = '[[@{/}]]';
-</script>
 <script th:src="@{/static/layui/layui.js}"></script>
 <script type="text/javascript">
-layui.use(['element','flow','layer','laytpl'], function(){
+layui.config({
+    base: '[[@{/static/mods/}]]'
+}).extend({
+    izerofx: 'index'
+}).use('izerofx');
+</script>
+<script type="text/javascript">
+layui.use(['flow','layer','laytpl'], function(){
     var $ = layui.jquery
     ,layer = layui.layer
     ,laytpl = layui.laytpl
-    ,flow = layui.flow
-    ,element = layui.element();
+    ,flow = layui.flow;
     
     var tpl = '{{# for(var i = 0; i < d.list.length; i++){ }}\
         <li>\
@@ -74,7 +64,6 @@ layui.use(['element','flow','layer','laytpl'], function(){
     flow.load({
         elem: '.doc-index-list'
         ,isAuto: true
-        ,isShowEnd: false
         ,isLazyimg: true
         ,done: function(page, next){
 	        $.ajax({
@@ -84,15 +73,22 @@ layui.use(['element','flow','layer','laytpl'], function(){
 	               p: page
 	            },
 	            url: BASE_URL + 'doc/list/',
-	            success: function(res){
-	                if(res.status === 0) {
-	                   var html = laytpl(tpl).render(res);
-	                   next(html, res.list.length < 10 ? 0:10);
+                success: function(res){
+                    if(res.status === 0) {
+                        if(page == 1 && res.total == 0){
+                            $(".fly-none").removeClass("layui-hide");
+                            $(".doc-index-list").addClass("layui-hide");
+                            next('', 0);
+                        }else{
+                            var html = laytpl(tpl).render(res);
+                            next(html, res.list.length < 10 ? 0 : 10);
+                        }
 	                } else {
-	                   layer.msg(res.msg||res.code, {shift: 6});
+                        layer.msg(res.msg||res.code, {shift: 6});
 	                }
-	            }, error: function(e){
-	                layer.msg('请求异常，请重试', {shift: 6});
+	            },
+                error: function(e){
+                    layer.msg('请求异常，请重试', {shift: 6});
 	            }
 	        });
         }
