@@ -1,14 +1,16 @@
 #仿百度文库完整项目
 
 演示地址：[https://wenku.izerofx.com:8000/](https://wenku.izerofx.com:8000/)
+
 GitHub：[https://github.com/qjx378/wenku](https://github.com/qjx378/wenku)
 
 项目很多细节不完善，但大致可以用，主要用于入门学习。
 项目是基于Spring Boot+Thymeleaf开发，没了解过的也可以顺便去学习了解下。
 
 #技术框架
-* 核心框架：Spring Boot 1.4.0
+* 核心框架：Spring Boot 1.4.2
 * 视图框架：Spring MVC 4.3.4
+* 会话管理：spring session 可以实现集群部署下session共享的问题
 * 视图模版: Thymeleaf 3.0.2
 * 持久层框架：Spring Data JPA
 * 数据库连接池：Druid 
@@ -22,7 +24,6 @@ GitHub：[https://github.com/qjx378/wenku](https://github.com/qjx378/wenku)
 * zbus 用到了Zbus MQ处理转换的队列(ps:其实可以不用)
 
 #正在开发中……
-* 准备接入spring-session，实现会话的统一管理，实现可分布式部署
 * 正在开发网站配套的APP
 
 #以下是部分截图
